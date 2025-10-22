@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindWorx - Profile Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
+        input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
+        button { background: #FF6B35; color: white; padding: 15px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; }
+        button:hover { background: #e55a2b; }
+        .upload-section { border: 2px dashed #ddd; padding: 20px; margin: 20px 0; text-align: center; }
+        .ai-badge { background: #4CAF50; color: white; padding: 5px 10px; border-radius: 3px; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 MindWorx Profile Generator</h1>
+        {% if gemini_available %}
+            <div class="ai-badge">🤖 AI Powered</div>
+        {% endif %}
+
+        <form action="/upload" method="post" enctype="multipart/form-data">
+
+            <h3>Personal Information</h3>
+            <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" name="full_name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email">
+            </div>
+
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" name="phone">
+            </div>
+
+            <div class="form-group">
+                <label>Location</label>
+                <input type="text" name="location">
+            </div>
+
+            <div class="form-group">
+                <label>Current Role *</label>
+                <input type="text" name="current_role" required>
+            </div>
+
+            <div class="form-group">
+                <label>Professional Summary</label>
+                <textarea name="professional_summary" rows="4" placeholder="Tell us about your professional background..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Technical Skills (comma separated)</label>
+                <textarea name="technical_skills" rows="3" placeholder="Python, JavaScript, SQL, React..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Soft Skills (comma separated)</label>
+                <textarea name="soft_skills" rows="3" placeholder="Communication, Leadership, Problem-solving..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Years of Experience</label>
+                <input type="number" name="years_experience" min="0" max="50">
+            </div>
+
+            <div class="form-group">
+                <label>Projects Description</label>
+                <textarea name="projects" rows="4" placeholder="Describe your key projects..."></textarea>
+            </div>
+
+            <div class="upload-section">
+                <h3>📁 Upload Documents</h3>
+
+                <div class="form-group">
+                    <label>CV/Resume (PDF)</label>
+                    <input type="file" name="cv" accept=".pdf">
+                </div>
+
+                <div class="form-group">
+                    <label>Academic Transcript (PDF)</label>
+                    <input type="file" name="transcript" accept=".pdf">
+                </div>
+
+                <div class="form-group">
+                    <label>Additional Qualifications (PDF)</label>
+                    <input type="file" name="qualifications" accept=".pdf">
+                </div>
+
+                <div class="form-group">
+                    <label>Profile Picture</label>
+                    <input type="file" name="picture" accept=".jpg,.jpeg,.png">
+                </div>
+            </div>
+
+            <button type="submit">Generate Profile</button>
+        </form>
+    </div>
+</body>
+</html>
